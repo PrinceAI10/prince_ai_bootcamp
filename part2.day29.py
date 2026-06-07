@@ -53,7 +53,7 @@ def read_first_line(filename):
     try:
         with open(filename, "r") as file:
             content = file.readline()
-            return int(content)
+            return int(content.strip())
     except FileNotFoundError:
         return "filename not found."
     except ValueError:
@@ -61,7 +61,7 @@ def read_first_line(filename):
     
 # RAISE WITH MESSAGE
 def validate_name(name):
-    if name == "":
+    if name.strip() == "":
             raise ValueError("No name found.")
     return name
     
@@ -81,7 +81,24 @@ def write_file(filename):
             file.write("Hello World!\n")
         return True
     except OSError:
-        print("filename not found.") 
-    return False
+        return False
+
+# FULL VALIDATION PIPELINE
+def validate_positive_number(user_input):
+    if user_input == "":
+        return "Invalid input"
+    try:
+        number = float(user_input)
+    except ValueError:
+        return "Invalid input"
+    if number > 0:
+        return number
+    else:
+        return "Invalid input"
     
-# def validate_po
+    
+    
+
+   
+            
+    
